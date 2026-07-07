@@ -6,7 +6,7 @@
 #+title: Taller Script Python
 #+date: 2026-07-06
 #+author: Anthonny Almeida, Micaela Sagñay, Jhanavi Molina, Damián Haro
-#+email: jhanavi.molina@epn.edu.ec
+#+email: jhanavi.molina@epn.edu.ec, anthonny.almeida@epn.edu.ec, micaela.sagnay@epn.edu.ec
 #+language: Español
 #+select_tags: export
 #+exclude_tags: noexport
@@ -242,6 +242,8 @@ plt.ylabel('$y/g$', fontsize=20)
 plt.show()
 
 #+end_src
+
+#+RESULTS:
 
 * Descripción librerías usadas
 ** SOLVE_IVP
