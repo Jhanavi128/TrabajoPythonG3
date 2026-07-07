@@ -1,0 +1,336 @@
+% Created 2026-07-06 Mon 21:06
+% Intended LaTeX compiler: pdflatex
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+
+\usepackage{fancyhdr}
+\usepackage[top=25mm, left=25mm, right=25mm]{geometry}
+\usepackage{longtable}
+\fancyhead[R]{}
+\setlength\headheight{43.0pt}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish, ]{babel}
+\usepackage[backend=biber]{biblatex}
+
+\usepackage{dirtree}
+\usetheme{default}
+\author{Anthonny Almeida, Micaela Sagñay, Jhanavi Molina, Damián Haro}
+\date{2026-07-06}
+\title{Taller Script Python}
+\hypersetup{
+ pdfauthor={Anthonny Almeida, Micaela Sagñay, Jhanavi Molina, Damián Haro},
+ pdftitle={Taller Script Python},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 27.1 (Org mode 9.7.5)}, 
+ pdflang={Español}}
+\begin{document}
+
+\maketitle
+\fancyhead[C]{\includegraphics[scale=0.05]{../images/logoEPN.jpg}\\
+ESCUELA POLITÉCNICA NACIONAL\\FACULTAD DE INGENIERÍA DE SISTEMAS\\
+ARQUITECTURA DE COMPUTADORES}
+\thispagestyle{fancy}
+
+
+\section{Objetivos}
+\label{sec:org570dcf7}
+\begin{itemize}
+\item Desarrollar un script de Python con paradigma estructurado
+\end{itemize}
+
+\section{Problema}
+\label{sec:org6696c90}
+Usted es el científico de datos para un sistema de lanzamiento de
+cohetes. Para esto, se le solicita que determine gráficamente el
+alcance del cohete según al menos tres ángulos de entrada, un tiempo
+máximo de vuelo \texttt{t}. Se considera que existe una fuerza de resistencia
+al movimiento debido al viento y representada mediante un coeficiente
+\texttt{b}. Escribir un programa que permita obtener el alcance del cohete
+gráficamente, mediante la resolución de ecuaciones diferenciales
+ordinarias. Los parámetros como Velocidad inicial \texttt{V}, coeficiente de
+resistencia \texttt{B}, tiempo máximo \texttt{tmax} y ángulos de lanzamiento se
+ingresan desde la línea de comando. Siga las instrucciones
+proporcionadas en  la Sección \ref{sec:orgf921120} para
+completar el taller.
+
+\section{Instrucciones}
+\label{sec:orgf921120}
+
+\begin{enumerate}
+\item Obtener las expresiones matemáticas para las ecuaciones
+diferenciales ordinarias. Vea la Sección \ref{sec:orgf9d2607}
+\item Investigar cómo funciona la librería \texttt{solve\_ivp} del paquete
+\texttt{scipy.integrate}
+\item Investigar cómo funciona la librearía \texttt{argparse} para controlar el
+ingreso de valores y opciones desde la línea de comandos.
+\item Cree una carpeta con los archivos del proyecto denominada \texttt{cohete}.
+\item Dentro de la carpeta cree un archivo \texttt{main.py} con el código
+proporcionado en la Sección \ref{sec:orga1bdf46}
+\item Reorganizar el código proporcionado de ejemplo para conformar un
+proyecto de código estructurado. Las funciones estarán dentro de
+una carpeta \texttt{utils} en el archivo \texttt{projectile\_functions.py}. El
+código principal se coloca en el archivo \texttt{main.py} conforme al
+siguiente esquema de archivos.
+\begin{enumerate}
+\item Con YASnippet habilitado escriba \texttt{imp} seguido de \texttt{C-TAB} para
+escribir \texttt{import}
+\item Escriba \texttt{main} seguido de la secuencia
+de comandos \texttt{C-TAB}. Esto genera una función llamada \texttt{main}
+\item escriba \texttt{ifm} seguido de la secuencia \texttt{C-TAB} para generar la
+condición de ejecución del programa Python como programa
+principal
+\item Use \texttt{fd} seguido de \texttt{C-TAB} para escribir una función con
+\emph{docstrings} y use \texttt{r} seguido de \texttt{C-TAB} para escribir \texttt{return}
+\item Utilice \texttt{pars} \texttt{C-TAB} para crear un parser y \texttt{args} \texttt{C-TAB}
+para crear un argumento de entrada del programa. Importe la
+librería \texttt{argparse}
+\end{enumerate}
+\end{enumerate}
+
+\dirtree{%
+ .1 /. 
+ .2 main.py. 
+ .2 utils. 
+ .3 \_\_init\_\_.py. 
+ .3 projectile\_functions.py. 
+ }
+\section{Entregables del taller}
+\label{sec:org2b7edf0}
+\begin{enumerate}
+\item Archivo .zip con el archivo \texttt{main.py} y la librería desarrollada
+\texttt{projectile\_functions.py} y el gráfico obtenido de una carrera.
+\item Completar en la sección [[]] de este documento una breve
+descripción de lo que hacen las librerías revisadas en este taller.
+\item Una vez redactado el punto anterior suba el archivo .ORG y el .PDF
+\end{enumerate}
+\section{Recursos}
+\label{sec:org32069ab}
+Puede consultar más información en el siguiente \href{https://www.youtube.com/watch?v=b9S\_L1AaJNw}{vídeo} y en \href{https://github.com/lukepolson/youtube\_channel/blob/main/Python\%20Metaphysics\%20Series/vid22.ipynb}{GitHub}
+
+\subsection{Desarrollo Matemático}
+\label{sec:orgf9d2607}
+
+
+La fuerza de resistencia del viento se puede considerar que es
+proporcional al cuadrado de la velocidad y en sentido opuesto a
+ésta. De ahí que las fuerzas actuando en el sistema quedarían
+determinadas por la ecuación
+
+
+\begin{equation}
+  \label{}
+  \vec{F}_{\text{net}} = \vec{F}_g + \vec{F}_f = -mg\hat{y} - b|\vec{v}|\vec{v}
+\end{equation}
+
+La velocidad está dada por \(\vec{v} = \dot{x} \hat{i} + \dot{y} \hat{j}\)
+
+En consecuencia la Fuerza neta del sistema queda:
+
+\begin{equation}
+  \label{}
+  \vec{F}_{\text{net}} = -mg\hat{y} - b\sqrt{\dot{x}^2 + \dot{y}^2}(\dot{x}\hat{i} + \dot{y}\hat{j})
+\end{equation}
+
+Que en forma vectorial se puede escribir como
+
+\begin{equation}
+  \label{}
+  \vec{F}_{\text{net}} = \begin{bmatrix} - b\sqrt{\dot{x}^2 + \dot{y}^2}\dot{x} \\ -mg - b\sqrt{\dot{x}^2 + \dot{y}^2}\dot{y} \end{bmatrix}
+\end{equation}
+
+Dado que \(\vec{F}_{\text{net}} = m\vec{a} = m\left< \ddot{x}, \ddot{y} \right>\), se tiene
+
+\begin{equation}
+  \label{}
+   m \begin{bmatrix}\ddot{x} \\ \ddot{y} \end{bmatrix} =  \begin{bmatrix} - b\sqrt{\dot{x}^2 + \dot{y}^2}\dot{x} \\ -mg - b\sqrt{\dot{x}^2 + \dot{y}^2}\dot{y} \end{bmatrix}
+\end{equation}
+
+De donde se obtienen el par de ecuaciones diferenciales
+
+\begin{equation}
+  \label{}
+  \ddot{x} = - \frac{b}{m}\sqrt{\dot{x}^2 + \dot{y}^2}\dot{x}
+\end{equation}
+
+\begin{equation}
+  \label{}
+  \ddot{y} = -g - \frac{b}{m}\sqrt{\dot{x}^2 + \dot{y}^2}\dot{y}
+\end{equation}
+
+Definiendo \(x' = x/g\) and \(y'=y/g\), se tiene entonces
+
+\begin{equation}
+  \label{}
+   \ddot{x'} = - \frac{bg}{m}\sqrt{\dot{x'}^2 + \dot{y'}^2}\dot{x'}
+\end{equation}
+
+\begin{equation}
+  \label{}
+   \ddot{y'} = -1 - \frac{bg}{m}\sqrt{\dot{x'}^2 + \dot{y'}^2}\dot{y'}
+\end{equation}
+
+Sea \(B \equiv bg/m\), entonces considerando el cambio de notación y
+eliminado la ' para simplificar, se propone resolver un sistema de
+ecuaciones de primer orden ODE siguiente:
+
+
+\begin{align}
+  \label{}
+  \dot{x} &= v_x\\
+  \dot{v_x}  &= - B\sqrt{\dot{x}^2 + \dot{y}^2}\dot{x}\\
+  \dot{y} &= v_y\\
+  \dot{v_y} &= - B\sqrt{\dot{x}^2 + \dot{y}^2}\dot{y}
+\end{align}
+
+
+
+\subsection{Código Inicial Python}
+\label{sec:orga1bdf46}
+
+
+\begin{verbatim}
+import numpy as np
+from scipy.integrate import solve_ivp
+import matplotlib.pyplot  as plt
+
+def dSdt(t,S,B):
+    """
+    Use fd seguido de C-TAB para generar la funcion con docstrings
+    Define el sistema de ecuaciones diferenciales para el movimiento del proyectil
+    con resistencia al aire
+    Parametros:
+        t (float): Tiempo
+        S (list): Estado actual [x, vx, y, vy]
+        B (float): Coeficiente de resistencia del aire. Varía desde 0.0 a 1.0
+    Retorna:
+        list: Derivadas [dx/dt, dvx/dt, dy/dt, dvy/dt]
+    """
+    x, vx, y, vy = S
+    return [vx,
+            -B*np.sqrt(vx**2+vy**2)*vx,
+            vy,
+            -1-B*np.sqrt(vx**2+vy**2)*vy]
+
+B = 0
+V = 1
+t1 = 40*np.pi/180
+t2 = 45*np.pi/180
+t3 = 50*np.pi/180
+
+sol1 = solve_ivp(dSdt, [0, 2],
+                 y0=[0,V*np.cos(t1),0,V*np.sin(t1)],
+                 t_eval=np.linspace(0,2,1000),
+                 args=(B,)) # atol=1e-7, rtol=1e-4)
+sol2 = solve_ivp(dSdt, [0, 2],
+                 y0=[0,V*np.cos(t2),0,V*np.sin(t2)],
+                 t_eval=np.linspace(0,2,1000),
+                 args=(B,)) #atol=1e-7, rtol=1e-4)
+sol3 = solve_ivp(dSdt, [0, 2],
+                 y0=[0,V*np.cos(t3),0,V*np.sin(t3)],
+                 t_eval=np.linspace(0,2,1000),
+                 args=(B,)) #atol=1e-7, rtol=1e-4)
+
+
+plt.plot(sol1.y[0],sol1.y[2], label=r'$\theta_0=40^{\circ}$')
+plt.plot(sol2.y[0],sol2.y[2], label=r'$\theta_0=45^{\circ}$')
+plt.plot(sol3.y[0],sol3.y[2], label=r'$\theta_0=50^{\circ}$')
+plt.ylim(bottom=0)
+plt.legend()
+plt.xlabel('$x/g$', fontsize=20)
+plt.ylabel('$y/g$', fontsize=20)
+plt.show()
+
+\end{verbatim}
+
+\section{Descripción librerías usadas}
+\label{sec:orgd6779a2}
+\subsection{SOLVE\textsubscript{IVP}}
+\label{sec:org341df34}
+Es una función del módulo scipy.integrate que permite resolver numéricamente sistemas de ecuaciones diferenciales ordinarias de valor inicial, es decir sistemas donde se conoce el estado del sistema
+en un tiempo inicial y se busca conocer su evolución a lo largo del tiempo mediante métodos numéricos de integración.
+En este taller, el sistema de ecuaciones de segundo orden que describe el movimiento del cohete con resistencia del aire, dónde se transforma en un sistema de 4 ecuaciones de primer orden
+(posición x, velocidad x, posición y, velocidad y), lo cual es necesario porque solve\textsubscript{ivp} solo resuelve sistemas de primer orden.
+
+Parámetros clave usados en el taller:
+\begin{itemize}
+\item fun (dSdt): Función que define las derivadas del sistema, con la forma f(t, S, *args), donde S es el vector de estado [x, vx, y, vy].
+\item t\textsubscript{span}: Intervalo de tiempo de la simulación, por ejemplo [0, tmax] dónde representa el tiempo inicial y final.
+\item y0: condiciones iniciales del sistema [x0, vx0, y0, vy0].
+\item t\textsubscript{eval}: arreglo de puntos de tiempo específicos donde se desea la solución para tener una curva suave al graficar.
+\item args: parámetros adicionales que necesita la función derivada, en este caso (B,) el coeficiente de resistencia del aire.
+\end{itemize}
+
+El resultado es un objeto con atributos como sol.t que es el arreglo de tiempos) y sol.y la matriz donde cada fila es una variable de estado:
+sol.y[0]=x, sol.y[1]=vx, sol.y[2]=y, sol.y[3]=vy, los cuales se usan luego para graficar la trayectoria del proyectil.
+
+\subsection{ARGPARSE}
+\label{sec:org9346351}
+Es un módulo de la librería estándar de Python, diseñado para construir interfaces de línea de comandos de forma clara y estructurada, permitiendo que un programa reciba parámetros de entrada
+directamente al ejecutarlo en la terminal, sin necesidad de modificar el código fuente cada vez que se quiere cambiar un valor, esto es fundamental en este taller porque
+según el enunciado del taller, parámetros como la velocidad inicial V, el coeficiente de resistencia del aire B, el tiempo máximo de vuelo tmax y los ángulos de lanzamiento
+deben poder ingresarse desde la línea de comandos, haciendo que el script sea flexible, reutilizable y fácil de probar con distintos escenarios sin editar main.py.
+El flujo típico de uso de argparse es:
+
+\begin{itemize}
+\item Crear el parser: parser = argparse.ArgumentParser(description="Simulación del alcance de un cohete"), la descripción aparece automáticamente si el usuario ejecuta el programa con -h o --help.
+\item Agregar argumentos: con parser.add\textsubscript{argument}(), especificando:
+\begin{itemize}
+\item El nombre del argumento como por ejemplo --velocidad o -v
+\item type: El tipo de dato esperado sea float, int, str, etc.
+\item default: Un valor por defecto si el usuario no lo especifica.
+\item help: un texto descriptivo para el usuario.
+\item nargs="+": permite recibir múltiples valores en un mismo argumento, útil para los ángulos de lanzamiento.
+\end{itemize}
+
+\item Procesar los argumentos: args = parser.parse\textsubscript{args}() lee lo que el usuario escribió en la terminal.
+\item Usar los valores: se acceden como atributos del objeto args, por ejemplo args.velocidad, args.B, args.tmax, args.angulos.
+\end{itemize}
+
+Argparse también genera automáticamente mensajes de error si el usuario ingresa un tipo de dato incorrecto y un mensaje de ayuda formateado que se llama --help,
+lo cual mejora la usabilidad del programa frente a tener que editar el código fuente para cambiar los parámetros.
+
+\subsection{NUMPY}
+\label{sec:org9e7346f}
+Es la librería fundamental de Python para computación científica y cálculo numérico, su estructura principal, el ndarray que es un arreglo n-dimensional, permite representar vectores, matrices y tensores
+y realizar operaciones matemáticas sobre ellos de forma vectorizada, aplicando una operación a todos los elementos del arreglo simultáneamente sin necesidad de bucles explícitos como for,
+lo cual las hace mucho más rápidas y eficientes.
+En este taller, numpy se utiliza en varios puntos clave:
+\begin{itemize}
+\item Conversión de unidades angulares: Los ángulos de lanzamiento se ingresan en grados, pero las funciones trigonométricas de Python trabajan en radianes, por lo que se convierten con la fórmula
+angulo\textsubscript{rad} = angulo\textsubscript{grados} * np.pi/180.
+\item Cálculo de componentes de velocidad inicial: Usando np.cos(theta) y np.sin(theta) se descompone la velocidad inicial V en sus componentes horizontal (vx0 = V*np.cos(theta)) y vertical
+(vy0 = V*np.sin(theta))que son necesarias como condiciones iniciales para solve\textsubscript{ivp}.
+\item Cálculo de la magnitud del vector velocidad: Dentro de la función dSdt se usa np.sqrt(vx**2 + vy**2) para obtener la rapidez instantánea del proyectil, un término indispensable en
+las ecuaciones diferenciales, ya que la fuerza de resistencia del aire es proporcional al cuadrado de la velocidad y actúa en dirección opuesta al movimiento.
+\item Generación de arreglos de tiempo: np.linspace(0, tmax, 1000) crea un arreglo de 1000 valores equiespaciados entre 0 y tmax, usado en el parámetro t\textsubscript{eval} de solve\textsubscript{ivp}
+para obtener una solución evaluada en puntos regulares, lo que produce una curva suave al graficar.
+\end{itemize}
+
+\subsection{MATPLOTLIB}
+\label{sec:orgf94e5a4}
+Es la librería más utilizada en Python para la creación de gráficos y visualizaciones de datos en 2D, su submódulo matplotlib.pyplot ofrece una interfaz similar a la de MATLAB, permitiendo crear gráficos
+con pocas líneas de código, en este proyecto aunque no aparece mencionada explícitamente en las instrucciones del taller como librería a "investigar", sí es utilizada en el código para cumplir
+con el objetivo principal: obtener el alcance del cohete de forma gráfica.
+Funciones clave usadas en el código:
+\begin{itemize}
+\item plt.plot(x, y, label="\ldots{}"): Dibuja la curva de la trayectoria del cohete para cada ángulo de lanzamiento simulado, usando los resultados obtenidos de solve\textsubscript{ivp} (sol.y[0] para x, sol.y[2] para y).
+\item plt.ylim(bottom=0): Fija el límite inferior del eje y en 0, evitando mostrar valores negativos de altura, ya que físicamente el cohete no debe descender por debajo del nivel del suelo en la gráfica.
+\item plt.legend(): Muestra un recuadro con la leyenda que identifica cada curva según su ángulo de lanzamiento.
+\item plt.xlabel() y plt.ylabel(): Etiquetan los ejes horizontal y vertical del gráfico, en este caso x/g y y/g, ya que las variables fueron adimensionalizadas dividiendo por la gravedad g.
+\item plt.show(): Renderiza y muestra la ventana con el gráfico final en pantalla.
+\end{itemize}
+Gracias a matplotlib, es posible comparar visualmente cómo cambia el alcance horizontal del cohete según el ángulo de lanzamiento y el coeficiente de resistencia del aire B, que es precisamente
+el resultado.  
+\end{document}
