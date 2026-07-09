@@ -127,11 +127,9 @@ coloque la dirección de la imagen.
 #+attr_latex: scale=0.75
 #+label: fig:lscpu
 
-[[[[./imáges/lsb_release.jpeg]]]]
-
-[[[[./imáges/lspci.jpeg]]]]
-
-[[[[./imáges/lscpu.jpeg]]]]
+[[[[./imágenes/lsb_release.jpeg]]]]
+[[[[./imágenes/lspci.jpeg]]]]
+[[[[./imágenes/lscpu.jpeg]]]]
 
 
 * Consulta
