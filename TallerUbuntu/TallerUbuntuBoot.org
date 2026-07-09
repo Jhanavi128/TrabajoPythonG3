@@ -4,9 +4,9 @@
 #+options: inline:t num:t p:nil pri:nil prop:nil stat:t tags:t
 #+options: tasks:t tex:t timestamp:t title:t toc:nil todo:t |:t
 #+title: Booteo de Sistema Operativo Linux
-#+date: 2026-07-07
-#+author: COLOQUE SU NOMBRE
-#+email: nombre.apellido@epn.edu.ec
+#+date: 2026-07-09
+#+author: Almeida Anthonny, Haro Damián, Molina Jhanavi y Sagñay Micaela
+#+email: anthonny.almeida@epn.edu.ec, damian.haro@epn.edu.ec, jhanavi.molina@epn.edu.ec y micaela.sagnay@epn.edu.ec
 #+language: Español
 #+select_tags: export
 #+exclude_tags: noexport
@@ -48,11 +48,17 @@ ARQUITECTURA DE COMPUTADORES}
 
 
 * Objetivos
+- Aprender a bootear un sistema operativo Linux desde un medio
+  externo como USB, comprendiendo el proceso de creación de un
+  dispositivo booteable y su ejecución en modo /Live/.
 
-- Aprender a  bootear un sistema operativo Linux
+- Comprender la secuencia de arranque de un computador, identificando
+  las diferencias y el rol que cumplen la BIOS y la UEFI dentro de
+  dicho proceso.
 
-- Aprender sobre la secuencia de arranque de un computador como la
-  BIOS y la UEFI
+- Identificar y utilizar comandos de Linux (~lscpu~, ~lsb_release~ y
+  ~lspci~) para obtener información del hardware y del sistema
+  operativo desde la terminal.
 
 * Instrucciones
 1. Siga el tutorial para la creación de un booteable de Ubuntu como se
@@ -129,9 +135,33 @@ coloque la dirección de la imagen.
 * Consulta
 Describa que hacen y para qué sirven los comandos utilizados en la práctica
 
-- lscpu ::
-- lsb\_release -a ::
-- lspci :: 
+- lscpu :: Es un comando que muestra información sobre la arquitectura de la
+  CPU obtenida directamente desde el sistema de archivos ~/proc/cpuinfo~
+  y desde llamadas al sistema, entre los datos que reporta
+  se encuentran: la arquitectura (x86_64, ARM, etc.), el modo de
+  operación (32 o 64 bits), el número de núcleos (/cores/), hilos por
+  núcleo, sockets, el fabricante y modelo del procesador, la
+  frecuencia de reloj, y la jerarquía de memoria caché (L1, L2, L3).
+  Es útil para diagnosticar el hardware disponible, verificar
+  compatibilidad de software con la arquitectura del procesador y
+  para tareas de optimización o virtualización.
+- lsb\_release -a :: Es un comando que despliega información sobre la distribución de
+  Linux instalada, basada en el estándar /LSB/ que es Linux Standard Base,
+  el cual busca unificar la estructura interna entre distintas
+  distribuciones, la opción ~-a~ muestra todos los siguientes datos
+  disponibles: el /Distributor ID/, la descripción completa, el número de versión (/Release/) y
+  el nombre en clave (/Codename/) de dicha versión, es útil para
+  identificar rápidamente qué distribución y versión se está
+  utilizando, algo esencial al momento de instalar paquetes,
+  reportar errores o verificar compatibilidad de software.
+- lspci :: Es un comando que lista todos los dispositivos conectados a los
+  buses PCI y PCIe del sistema, tales como la tarjeta gráfica, controladores
+  de red, controladores USB, tarjetas de sonido y otros periféricos integrados en la
+  placa base, este comando obtiene esta información consultando directamente el
+  árbol de dispositivos del kernel en ~/sys/bus/pci~, es bastante útil para
+  identificar el hardware instalado, diagnosticar problemas de
+  drivers o controladores faltantes y verificar la compatibilidad
+  de dispositivos con el sistema operativo.
 
 
 * Footnotes

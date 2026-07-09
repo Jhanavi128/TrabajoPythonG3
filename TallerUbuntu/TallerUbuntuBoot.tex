@@ -1,0 +1,180 @@
+% Created 2026-07-09 Thu 08:31
+% Intended LaTeX compiler: pdflatex
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+
+\usepackage{fancyhdr}
+\usepackage[top=25mm, left=25mm, right=25mm]{geometry}
+\usepackage{longtable}
+\fancyhead[R]{}
+\setlength\headheight{43.0pt}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish, ]{babel}
+\usepackage[backend=biber]{biblatex}
+
+\usetheme{default}
+\author{Almeida Anthonny, Haro Damián, Molina Jhanavi y Sagñay Micaela}
+\date{2026-07-09}
+\title{Booteo de Sistema Operativo Linux}
+\hypersetup{
+ pdfauthor={Almeida Anthonny, Haro Damián, Molina Jhanavi y Sagñay Micaela},
+ pdftitle={Booteo de Sistema Operativo Linux},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 27.1 (Org mode 9.7.5)}, 
+ pdflang={Español}}
+\begin{document}
+
+\maketitle
+\fancyhead[C]{\includegraphics[scale=0.05]{../images/logoEPN.jpg}\\
+ESCUELA POLITÉCNICA NACIONAL\\FACULTAD DE INGENIERÍA DE SISTEMAS\\
+ARQUITECTURA DE COMPUTADORES}
+\thispagestyle{fancy}
+
+
+
+
+\section{Objetivos}
+\label{sec:orga6ddfd7}
+\begin{itemize}
+\item Aprender a bootear un sistema operativo Linux desde un medio
+externo como USB, comprendiendo el proceso de creación de un
+dispositivo booteable y su ejecución en modo \emph{Live}.
+
+\item Comprender la secuencia de arranque de un computador, identificando
+las diferencias y el rol que cumplen la BIOS y la UEFI dentro de
+dicho proceso.
+
+\item Identificar y utilizar comandos de Linux (\texttt{lscpu}, \texttt{lsb\_release} y
+\texttt{lspci}) para obtener información del hardware y del sistema
+operativo desde la terminal.
+\end{itemize}
+
+\section{Instrucciones}
+\label{sec:org1c5389c}
+\begin{enumerate}
+\item Siga el tutorial para la creación de un booteable de Ubuntu como se
+indica en la unidad 9 en el archivo Arranque Ubuntu\footnote{Dependiendo de las características de su computador debe
+verificar si al crear el medio booteable para Ubuntu, su sistema
+reconoce o acepta para el \emph{Target System}}.
+
+\item Realice un respaldo del código de \emph{BitLocker} utilizando un command
+prompt de Windows con permisos de administrador\footnote{Si no respalda el código, no podrá arrancar el disco luego de
+reiniciar. Más información en: \href{https://www.partitionwizard.com/disk-recovery/bitlocker-recovery-key-bypass.html }{https://www.partitionwizard.com/disk-recovery/bitlocker-recovery-key-bypass.html}}:
+
+\begin{verbatim}
+    manage-bde-protectors C:-get
+\end{verbatim}
+
+\item Utilizando su computador o el del laboratorio, siga los pasos
+indicados para obtener el booteo desde el USB con el Sistema
+Operativo de Ubuntu
+
+\item Realice el boot de Ubuntu desde la memoria USB externa y
+seleccione la opción de \emph{Probar Sistema Operativo}.
+\item Una vez ingresado active un terminal de Ubuntu: \texttt{Ctrl+ALT+T} y
+obtenga las características del computador mediante la ejecución de
+los comandos: \texttt{lscpu}, \texttt{lsb\_release -a} y \texttt{lspci}. Obtenga capturas
+de la ejecución de los comandos. Luego abra este archivo en WSL y
+ejecute los comandos desde los bloques shell. Para insertar un
+bloque puede usar la combinación \texttt{C-c C-,}, escoja la opción \texttt{src}
+e indique que es del tipo shell.
+\end{enumerate}
+
+\section{Desarrollo Emacs}
+\label{sec:org48b6d8f}
+Se sugiere utilizar la opción \texttt{:fontsize
+scriptsize} para dar formato a la ejecución del comando. Por ejemplo,
+considere:
+
+\begin{verbatim}
+whoami
+\end{verbatim}
+
+\begin{verbatim}
+leningfe
+\end{verbatim}
+
+\subsection{Comando \texttt{lsb\_release}}
+\label{sec:org00addb9}
+\begin{verbatim}
+    lsb_release -a
+\end{verbatim}
+
+\begin{center}
+\begin{tabular}{ll}
+Distributor ID: & Ubuntu\\[0pt]
+Description: & Ubuntu 22.04.4 LTS\\[0pt]
+Release: & 22.04\\[0pt]
+Codename: & jammy\\[0pt]
+\end{tabular}
+\end{center}
+
+
+\subsection{Comando \texttt{lspci}}
+\label{sec:orge78c751}
+
+
+
+\subsection{Comando \texttt{lscpu}}
+\label{sec:orgb4cee41}
+
+\section{Desarrollo Capturas}
+\label{sec:org51f62b1}
+Coloque las capturas de los resultados obtenidos en los
+terminales. Para esto recuerde utilizar dobles corchetes y escribir el
+\emph{path} hacia la imagen. Pruebe a utilizar YASnipet para generar el
+siguiente código para descripción de la figura. Para esto puede
+escriba \texttt{fig\_} seguido de la combinación de teclas \texttt{C-TAB}, finalmente
+coloque la dirección de la imagen.
+
+\begin{verbatim}
+[[./images/lscpu.png]]
+\end{verbatim}
+
+
+\section{Consulta}
+\label{sec:orgc93039d}
+Describa que hacen y para qué sirven los comandos utilizados en la práctica
+
+\begin{description}
+\item[{lscpu}] Es un comando que muestra información sobre la arquitectura de la
+CPU obtenida directamente desde el sistema de archivos \texttt{/proc/cpuinfo}
+y desde llamadas al sistema, entre los datos que reporta
+se encuentran: la arquitectura (x86\textsubscript{64}, ARM, etc.), el modo de
+operación (32 o 64 bits), el número de núcleos (\emph{cores}), hilos por
+núcleo, sockets, el fabricante y modelo del procesador, la
+frecuencia de reloj, y la jerarquía de memoria caché (L1, L2, L3).
+Es útil para diagnosticar el hardware disponible, verificar
+compatibilidad de software con la arquitectura del procesador y
+para tareas de optimización o virtualización.
+\item[{lsb$\backslash$\textsubscript{release} -a}] Es un comando que despliega información sobre la distribución de
+Linux instalada, basada en el estándar \emph{LSB} que es Linux Standard Base,
+el cual busca unificar la estructura interna entre distintas
+distribuciones, la opción \texttt{-a} muestra todos los siguientes datos
+disponibles: el \emph{Distributor ID}, la descripción completa, el número de versión (\emph{Release}) y
+el nombre en clave (\emph{Codename}) de dicha versión, es útil para
+identificar rápidamente qué distribución y versión se está
+utilizando, algo esencial al momento de instalar paquetes,
+reportar errores o verificar compatibilidad de software.
+\item[{lspci}] Es un comando que lista todos los dispositivos conectados a los
+buses PCI y PCIe del sistema, tales como la tarjeta gráfica, controladores
+de red, controladores USB, tarjetas de sonido y otros periféricos integrados en la
+placa base, este comando obtiene esta información consultando directamente el
+árbol de dispositivos del kernel en \texttt{/sys/bus/pci}, es bastante útil para
+identificar el hardware instalado, diagnosticar problemas de
+drivers o controladores faltantes y verificar la compatibilidad
+de dispositivos con el sistema operativo.
+\end{description}
+\end{document}
