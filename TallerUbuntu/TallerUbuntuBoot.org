@@ -128,7 +128,9 @@ coloque la dirección de la imagen.
 #+label: fig:lscpu
 
 [[[[./imágenes/lsb_release.jpeg]]]]
+
 [[[[./imágenes/lspci.jpeg]]]]
+
 [[[[./imágenes/lscpu.jpeg]]]]
 
 
